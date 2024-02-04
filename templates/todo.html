@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+  {% block body %}
+      <h1>CS2613 Course Manager</h1>
+      <p>If you would to stay up to date on due dates, click <a href="/subscribe">here</a> to subscribe.</p>
+      <br>
+      <hr>
+      {% for message in get_flashed_messages() %}
+        {{ message }} <br>
+      {% endfor %}
+      <hr>
+     <br>
+      <p><b>Completed Questions:</b></p>
+   
+      {% for question in completedPQs %}
+      <p>{{ question[0] }} {{ question[1] }}{{ question[2] }}</p>
+      {% endfor %}
+      <br>
+      <p><b>Questions remaining:</b></p>
+      {% for date in remainingDates %}
+      <form action="" method="post">
+
+        <input type="text" id="date" name="date" value="{{ date }}" readonly><br>
+
+        <input type="radio" name="language" id="option1" value="Python"> Python </input>
+        <input type="radio" name="language" id="option2" value="JavaScript"> JavaScript </input>
+        <input type="radio" name="language" id="option3" value="Racket"> Racket </input>
+        <input type="radio" name="language" id="option3" value="Octave"> Octave </input> <br>
+
+        <input type="radio" name="number" id="option1" value="1"> 1 </input>
+        <input type="radio" name="number" id="option2" value="2"> 2 </input>
+        <input type="radio" name="number" id="option3" value="3"> 3 </input><br>
+
+        <input class="btn btn-default" type="submit" value="Submit">
+      </form>
+      {% endfor %}
+      
+    {% endblock %}

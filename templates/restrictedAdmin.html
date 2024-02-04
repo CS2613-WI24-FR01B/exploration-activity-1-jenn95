@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+    {% block body %}
+    
+      <h1>Administrative Information</h2>
+        <p>Click <a href="/logout">here</a> to logout.</p>
+      <br>
+      <br>
+      <p>The following accounts have signed up for the subscription service:</p>
+      {% for subscriber in subList %}
+      {{ subscriber }} <br>
+    {% endfor %}
+
+{% endblock %}

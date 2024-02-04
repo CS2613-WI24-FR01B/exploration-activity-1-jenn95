@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    {% block body %}
+      <h1>Stay in the loop on your course!</h1>
+      <p>Click <a href="/">here</a> to return home.</p>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Name" name="name" value="{{
+          request.form.name }}">
+         <input type="number" placeholder="Phone Number" name="number" value="{{
+          request.form.number }}">
+        <input class="btn btn-default" type="submit" value="Subscribe">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+      {% endif %}
+
+      {% for message in get_flashed_messages() %}
+        {{ message }}
+      {% endfor %}
+
+    {% endblock %}

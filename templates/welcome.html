@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+  {% block body %}
+      <h1>Welcome to the Flask Course Manager Demo!</h2>
+      <br>
+      <p>Click <a href="/todo">here</a> to track your course progress.</p>
+      <p>Click <a href="/login">here</a> to login as an admin.</p>
+      <p>If you would to stay up to date on your course, click <a href="/subscribe">here</a> to subscribe.</p>
+
+      {% for message in get_flashed_messages() %}
+        {{ message }}
+      {% endfor %}
+
+  {% endblock %}

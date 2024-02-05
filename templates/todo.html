@@ -15,11 +15,9 @@
       <p>{{ question[0] }} {{ question[1] }}{{ question[2] }}</p>
       {% endfor %}
       <br>
-      <p><b>Questions remaining:</b></p>
-      {% for date in remainingDates %}
+      <p><b>Next Due Date:</b></p>
       <form action="" method="post">
-
-        <input type="text" id="date" name="date" value="{{ date }}" readonly><br>
+        <input type="text" id="date" name="date" value="{{ remainingDates[0] }}" readonly><br>
 
         <input type="radio" name="language" id="option1" value="Python"> Python </input>
         <input type="radio" name="language" id="option2" value="JavaScript"> JavaScript </input>
@@ -28,10 +26,10 @@
 
         <input type="radio" name="number" id="option1" value="1"> 1 </input>
         <input type="radio" name="number" id="option2" value="2"> 2 </input>
-        <input type="radio" name="number" id="option3" value="3"> 3 </input><br>
+        <input type="radio" name="number" id="option3" value="3"> 3 </input><br><br>
 
         <input class="btn btn-default" type="submit" value="Submit">
       </form>
-      {% endfor %}
-      
+      <br>
+
     {% endblock %}

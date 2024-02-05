@@ -6,7 +6,8 @@ from functools import wraps
 app = Flask(__name__)
 
 account_sid = "AC15d3034aa47604f06b5b17f9199c2f75"
-auth_token  = "24448c148db63e40ce5a382d9764ff65"
+auth_token  = "84dd4ccfbf57691443e765dd15476a29"
+twilio_number = "+14423337508"
 
 client = Client(account_sid, auth_token)
 
@@ -34,11 +35,11 @@ def home():
 def subscribe():
     error = None
     if request.method == 'POST':
-        if len(request.form['number']) < 11:
+        if len(request.form['number']) != 11:
             error = 'Invalid Number. Please try again with format: +15061234567'
         else:
             try:
-                client.messages.create(to=request.form['number'],from_="+14423337508",body="Thanks for subscribing to the demo!")
+                client.messages.create(to=request.form['number'],from_="twilio_number",body="Thanks for subscribing to the Flask demo!")
                 flash('Thanks, '+ request.form['name']+'! You were added to the subscription list.')
             except:
                 error = 'Invalid number. This number has not been configured with the *Trial* Twilio Account'
@@ -50,13 +51,20 @@ completedPQs=[]
 @app.route('/todo', endpoint='todo', methods=['GET', 'POST'])
 def todo():
     error = None
+    status = "new"
+    progress=None
     if request.method == 'POST':
-        flash('You just completed PQ '+ request.form['language']+ request.form['number'])
-        if request.form['date'] in remainingDates:
+        question = [request.form['date'], request.form['language'], request.form['number']]
+        for q in completedPQs:
+            if q[1]==question[1] and q[2]==question[2]:
+                flash("You have already submitted this question!")
+                status = "existing"
+        if status=="new":
+            completedPQs.append(question)
             remainingDates.remove(request.form['date']);
-        question = [request.form['date'], request.form['language'],request.form['number']]
-        completedPQs.append(question)
-        flash('You have completed ' + str(len(completedPQs)) + ' and have ' + str(len(remainingDates)) + ' remaining.')
+            flash('You just completed PQ '+ request.form['language']+ request.form['number'])
+
+        flash('You have completed ' + str(len(completedPQs)) + ' questions and have ' + str(len(remainingDates)) + ' remaining.')
         return redirect(url_for('todo'))
     return render_template('todo.html', error=error, remainingDates=remainingDates, completedPQs=completedPQs)      
 
@@ -91,4 +99,4 @@ def restrictedAdmin():
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
-    app.run(port=8082, debug=True)
+    app.run(port=8083, debug=True)

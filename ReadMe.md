@@ -5,7 +5,7 @@ The sample program, app.py, that I have developed uses the Flask framework. This
 
 ## **Running the Application**
 
-Once the required installations are complete, as per "Using Flask" in FlaskOverview.md, the virtual environment should be activated, then call python3 and the main application name, in the case of this demo application, app.py, to start the application.
+Once the required installations are complete, as per "Using Flask" in FlaskOverview.md, the virtual environment should be activated, then call python3 and the main application name, in the case of this demo application, app.py, to start the application. In addition to Python3, Flask, virtualenv, and Twilio should be installed (`pip3 install {necessary-package-here}`) before proceeding. 
 
 MacOS:
 ```

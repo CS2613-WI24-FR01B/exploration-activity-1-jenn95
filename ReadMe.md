@@ -55,6 +55,14 @@ Unfortunately, due to reasons discussed above, Twilio is not working when publis
 
 This was not a key feature of Flask, so I am not too concerned about it as it was more to emphasize the value and ways we can integrate other libraries while using Flask.
 
+### **Login Page**
+The login page can be used to access a list of numbers that have subscribed to the course subscription service. This creates a session, as discussed in FlaskOverview.md. An option to logout is offered, with feedback message provided to the user after logging out. 
+
+
+
+https://github.com/CS2613-WI24-FR01B/exploration-activity-1-jenn95/assets/112823585/9667f749-85a0-4704-ba3e-ba134d980405
+
+
 
 
 
